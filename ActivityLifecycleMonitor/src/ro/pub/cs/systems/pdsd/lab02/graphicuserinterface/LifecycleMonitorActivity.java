@@ -13,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
 public class LifecycleMonitorActivity extends Activity {
+	private static int xx = 0;
 	
 	private ButtonClickListener buttonClickListener = new ButtonClickListener();
 	
@@ -74,7 +76,6 @@ public class LifecycleMonitorActivity extends Activity {
         okButton.setOnClickListener(buttonClickListener);
         Button cancelButton = (Button)findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(buttonClickListener);
-        Log.d(Constants.TAG, "onCreate() method was invoked");
     }    
 
     @Override
@@ -95,4 +96,62 @@ public class LifecycleMonitorActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    @Override
+    protected void onRestart() {
+      super.onRestart();
+      Log.d(Constants.TAG, "RESTART method was invoked");
+    }
+    
+    @Override
+    protected void onStart() {
+      super.onStart();
+    	  Log.d(Constants.TAG, "START method was invoked");
+    }
+    
+    @Override
+    protected void onResume() {
+      super.onResume();
+      Log.d(Constants.TAG, "RESUME method was invoked");
+    }
+    
+    @Override
+    protected void onPause() {
+      super.onPause();
+      Log.d(Constants.TAG, "PAUSE method was invoked");
+    }
+    
+    @Override
+    protected void onStop() {
+      super.onStop();
+      Log.d(Constants.TAG, "STOP method was invoked");
+    }
+    
+    @Override
+    protected void onDestroy() {
+      super.onDestroy();
+      Log.d(Constants.TAG, "DESTROY method was invoked");
+    }
+    
+   
+
+    /*public void onSaveInstanceState(Bundle savedInstanceState){
+    	super.onSaveInstanceState(savedInstanceState);
+    	Log.d(Constants.TAG,"onSave method was invoked");
+        CheckBox c = (CheckBox) findViewById(R.id.remember_me_checkbox);
+        if(c.isChecked()){
+        	savedInstanceState.putString(Constants.USERNAME_TAG, ((EditText)findViewById(R.id.username_edit_text)).getText().toString());
+        	savedInstanceState.putString(Constants.PASSWORD_TAG, ((EditText)findViewById(R.id.password_edit_text)).getText().toString());
+        }	
+    	
+    }*/
+    
+  /*public void onRestoreInstanceState(Bundle savedInstanceState){
+	  super.onRestoreInstanceState(savedInstanceState);
+	Log.d(Constants.TAG,"onRestore method was invoked");
+	((EditText)findViewById(R.id.username_edit_text)).setText(savedInstanceState.getString(Constants.USERNAME_TAG));
+	((EditText)findViewById(R.id.password_edit_text)).setText(savedInstanceState.getString(Constants.PASSWORD_TAG));
+
+}*/
+
 }
